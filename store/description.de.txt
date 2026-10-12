@@ -1,0 +1,21 @@
+Copystate kopiert die Seite, die du gerade siehst, als sauberes Markdown für deinen KI-Assistenten. Anders als Artikel-Clipper erfasst es den Live-Zustand der Seite: was du eingetippt, angehakt und ausgewählt hast, und die Optionen, die seine Dropdowns anbieten. So gibst du einem LLM den vollen Kontext eines Formulars, einer Einstellungsseite oder einer Web-App.
+
+Was es erfasst
+• Seiteninhalt: Überschriften, Text, Hinweise, Tabellen und Links
+• Jedes Formularfeld mit aktuellem Wert: Text, Checkboxen, Radios, Switches, Selects und ARIA-Comboboxen
+• Die Optionen von nativen und Custom Dropdowns (getestet mit MUI, Ant Design, Element Plus, PrimeVue, Radix, Reka UI, Headless UI und react-select)
+• Umfang: Hauptinhalt oder ganze Seite
+
+So funktioniert es
+1. Klick aufs Icon oder drück Alt+Shift+M (auf dem Mac Option+Shift+M, der Shortcut lässt sich ändern). Copystate liest die Seite und zeigt eine Vorschau mit der Zahl der Felder, Zeichen und ungefähren Tokens. Auf der Seite passiert nichts, kopiert ist noch nichts.
+2. Manche Custom Dropdowns zeigen ihre Optionen nur, solange sie offen sind. Hat die Seite solche Dropdowns, öffnet der Button „Dropdowns öffnen“ jedes kurz und schließt es wieder. Dabei wird nichts ausgewählt oder abgeschickt, und das passiert nur, wenn du den Button klickst.
+3. Klick auf „Kopieren“ oder drück Enter: Das Markdown liegt in der Zwischenablage.
+
+Datenschutz
+• Passwörter, Kartennummern, IBANs, Einmalcodes und Tokens in Formularfeldern werden geschwärzt, ebenso Zugangsdaten und Tokens in Links
+• Läuft komplett lokal: sendet nichts, keine Analytics, kein Konto
+• Liest nur den Tab, auf dem du es startest, nie im Hintergrund
+• Gespeichert wird nur deine Einstellung für den Umfang
+
+Open Source (MIT): https://github.com/mrvnklm/copystate
+Funktioniert mit jedem KI-Assistenten oder LLM, das Text annimmt.

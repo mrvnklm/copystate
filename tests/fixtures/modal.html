@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Modals</title>
+<style>
+  .popover { display: none; }
+  .popover.open { display: block; }
+</style>
+</head>
+<body>
+<main>
+<h1>Modals</h1>
+<!-- Feld, in dem der User zuletzt stand. Escape leert es: der Probe darf es nie treffen. -->
+<label>Search <input id="search" value="keep me"></label>
+</main>
+
+<!-- Natives Dialog mit Backdrop-Muster: Klick mit target === dialog schließt es (offen ohne showModal,
+     sonst wäre das ARIA-Modal daneben inert) -->
+<dialog id="native" open>
+  <h2>Native dialog</h2>
+  <span id="d1-l">Region</span>
+  <div id="d1" role="combobox" tabindex="0" aria-expanded="false" aria-labelledby="d1-l">EU</div>
+  <ul class="popover" id="d1-pop" role="listbox"><li role="option" aria-selected="true">EU</li><li role="option">US</li></ul>
+</dialog>
+
+<!-- ARIA-Modal, das per Escape am document schließt (Bubble-Phase), mit einem Dropdown, das Escape ignoriert -->
+<div id="aria" role="dialog" aria-modal="true" aria-labelledby="aria-t">
+  <h2 id="aria-t">ARIA dialog</h2>
+  <span id="d2-l">Size</span>
+  <div id="d2" role="combobox" tabindex="0" aria-expanded="false" aria-labelledby="d2-l">M</div>
+</div>
+
+<script>
+  document.getElementById('native').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) e.currentTarget.close();
+  });
+  d1.addEventListener('click', () => {
+    const open = d1.getAttribute('aria-expanded') !== 'true';
+    d1.setAttribute('aria-expanded', String(open));
+    document.getElementById('d1-pop').classList.toggle('open', open);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') document.getElementById('aria').remove();
+  });
+  // d2 öffnet per Klick, schließt nur per mousedown außerhalb
+  d2.addEventListener('click', () => {
+    if (d2.getAttribute('aria-expanded') === 'true') return;
+    const ul = document.createElement('ul');
+    ul.setAttribute('role', 'listbox');
+    ul.innerHTML = '<li role="option" aria-selected="true">M</li><li role="option">L</li>';
+    d2.after(ul);
+    d2.setAttribute('aria-expanded', 'true');
+    const away = (e) => {
+      if (ul.contains(e.target) || d2.contains(e.target)) return;
+      ul.remove();
+      d2.setAttribute('aria-expanded', 'false');
+      document.removeEventListener('mousedown', away);
+    };
+    document.addEventListener('mousedown', away);
+  });
+
+  const search = document.getElementById('search');
+  search.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') search.value = '';
+  });
+  search.focus({ preventScroll: true });
+</script>
+</body>
+</html>

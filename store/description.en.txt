@@ -1,0 +1,21 @@
+Copystate copies the web page you are looking at as clean Markdown, ready to paste into an AI assistant. Unlike article clippers, it captures the live state of the page: what you typed, ticked and selected, plus the options its dropdowns offer. Use it to give an LLM the full context of a form, a settings page or a web app.
+
+What it captures
+• Page content: headings, text, notes, tables and links
+• Every form field with its current value: text, checkboxes, radios, switches, selects and ARIA comboboxes
+• The options of native and custom dropdowns (tested with MUI, Ant Design, Element Plus, PrimeVue, Radix, Reka UI, Headless UI and react-select)
+• Scope: main content or the whole page
+
+How it works
+1. Click the toolbar icon or press Alt+Shift+M (Option+Shift+M on macOS; you can change the shortcut). Copystate reads the page and shows a preview with field, character and rough token counts. Nothing on the page is touched and nothing is copied yet.
+2. Some custom dropdowns only reveal their options while open. If the page has such dropdowns, the "Open dropdowns" button opens each one briefly and closes it again. Nothing gets selected or submitted, and this only happens when you click that button.
+3. Click "Copy" or press Enter to put the Markdown on your clipboard.
+
+Privacy
+• Passwords, card numbers, IBANs, one-time codes and tokens in form fields are redacted, as are credentials and tokens in link URLs
+• Runs entirely locally: sends nothing anywhere, no analytics, no account
+• Reads only the tab you invoke it on, never in the background
+• Stores only your scope setting
+
+Open source (MIT): https://github.com/mrvnklm/copystate
+Works with any AI assistant or LLM that accepts text.

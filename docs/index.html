@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copystate</title>
+<meta name="description" content="Copy the page you see as Markdown for your AI, with every form field, its value and the options of its dropdowns.">
+<meta property="og:title" content="Copystate">
+<meta property="og:description" content="Copy the page you see as Markdown for your AI, with every form field, its value and the options of its dropdowns.">
+<meta property="og:image" content="https://mrvnklm.github.io/copystate/screenshot.png">
+<meta property="og:url" content="https://mrvnklm.github.io/copystate/">
+<link rel="icon" href="icon-128.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <img src="icon-128.png" alt="">
+    <a href="./">Copystate</a>
+    <nav aria-label="Site"><a href="demo.html">Demo</a><a href="privacy.html">Privacy</a><a href="https://github.com/mrvnklm/copystate">GitHub</a></nav>
+  </header>
+
+  <main>
+  <h1>Give your AI the page as you see it</h1>
+  <p class="lead">Copystate copies the current page as Markdown: text, tables, links and every form field with its value and
+    the options of its dropdowns, including custom ones. Paste it into any AI assistant and ask about the form you are filling in.</p>
+
+  <img class="shot" src="screenshot.png" width="1280" height="800" alt="Copystate popup next to a settings form, listing the Plan dropdown with its options Free, Team and Business">
+
+  <div class="buttons">
+    <a class="button" href="https://addons.mozilla.org/firefox/addon/copystate/">Firefox</a>
+    <span class="button secondary" aria-disabled="true">Chrome: in review</span>
+    <a class="button secondary" href="demo.html">Try it on the demo page</a>
+  </div>
+
+  <h2>How it works</h2>
+  <table>
+    <tr><th>1. Open</th><td>Click the toolbar icon or press <code>Alt+Shift+M</code> (<code>Option+Shift+M</code> on macOS). Copystate reads the page and shows a preview with
+      fields, characters and a rough token count. Nothing on the page is touched and nothing is copied yet.</td></tr>
+    <tr><th>2. Dropdowns</th><td>Some dropdowns only show their options while open. If the page has such dropdowns, <em>Open dropdowns</em>
+      opens each one briefly and closes it again. Nothing gets selected or submitted.</td></tr>
+    <tr><th>3. Copy</th><td>Click <em>Copy</em> or press Enter. The Markdown is on your clipboard.</td></tr>
+  </table>
+
+  <h2>Example output</h2>
+  <p>Excerpt for the <a href="demo.html">demo page</a> after <em>Open dropdowns</em>:</p>
+<pre># Account settings · Copystate demo
+
+URL: https://mrvnklm.github.io/copystate/demo.html
+
+## Plan
+
+- **Plan**: `Team` _(dropdown)_
+  - _Hint:_ Team includes up to 10 seats.
+  - [ ] Free
+  - [x] Team
+  - [ ] Business
+
+#### Billing period
+
+- (•) **Yearly (2 months free)** _(radio, group `period`)_
+- ( ) **Monthly** _(radio, group `period`)_
+
+## Payment
+
+- **IBAN**: `[redacted]` _(text)_
+- **Confirm with password**: `[redacted]` _(password)_</pre>
+
+  <h2>Privacy</h2>
+  <p>Copystate runs entirely in your browser. It sends nothing anywhere: no network requests, no analytics, no account. Form fields
+    for passwords, card numbers, IBANs, one-time codes and tokens are redacted, as are credentials and tokens in link URLs. Details: <a href="privacy.html">privacy policy</a>.</p>
+
+  <h2>Support</h2>
+  <p>Questions and bug reports: <a href="https://github.com/mrvnklm/copystate/issues">GitHub issues</a>. If a page is read wrongly,
+    please include the URL or a snippet of its HTML.</p>
+
+  </main>
+
+  <footer>MIT licensed · <a href="https://github.com/mrvnklm/copystate">Source code</a></footer>
+</div>
+</body>
+</html>

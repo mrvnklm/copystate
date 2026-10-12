@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copystate Privacy</title>
+<meta name="description" content="Copystate processes the page locally and sends nothing anywhere.">
+<meta property="og:title" content="Copystate privacy policy">
+<meta property="og:description" content="Copystate processes the page locally and sends nothing anywhere.">
+<meta property="og:image" content="https://mrvnklm.github.io/copystate/screenshot.png">
+<meta property="og:url" content="https://mrvnklm.github.io/copystate/privacy.html">
+<link rel="icon" href="icon-128.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <img src="icon-128.png" alt="">
+    <a href="./">Copystate</a>
+    <nav aria-label="Site"><a href="demo.html">Demo</a><a href="privacy.html" aria-current="page">Privacy</a><a href="https://github.com/mrvnklm/copystate">GitHub</a></nav>
+  </header>
+
+  <main>
+  <h1>Privacy policy</h1>
+  <p class="lead">Last updated: 2026-10-12. Short version: Copystate processes the page you invoke it on locally, in your browser,
+    and sends nothing anywhere.</p>
+
+  <h2>What Copystate reads</h2>
+  <p>Only when you click its toolbar icon or press its shortcut, and only in the tab you are looking at, Copystate reads:</p>
+  <ul>
+    <li>the page title and address (URL),</li>
+    <li>the visible text, headings, tables and links of the page,</li>
+    <li>form fields with their current values, including what you typed, and the options of dropdowns.</li>
+  </ul>
+  <p>This can include personal information shown on or entered into the page, for example your name, address or account
+    details. Form fields for passwords, card numbers, IBANs, one-time codes and access tokens are replaced with
+    <code>[redacted]</code>, as are user names, passwords and token parameters inside URLs. Text that the page merely
+    displays is not redacted.</p>
+  <p>When you click <em>Open dropdowns</em>, Copystate opens each dropdown briefly. The page reacts as it would to your own
+    click and may, for example, load the options from its own server. Copystate itself sends nothing.</p>
+
+  <h2>What happens with it</h2>
+  <ul>
+    <li>The Markdown is shown in the extension's popup. It is put on your clipboard only when you click <em>Copy</em> or press Enter.</li>
+    <li>No page content is stored. When the popup closes, the text is gone, unless you copied it.</li>
+    <li>Nothing is transmitted. The extension contains no code that sends data, and its content security policy blocks
+      network connections from its popup.</li>
+    <li>No analytics, no tracking, no account, no remote code.</li>
+  </ul>
+  <p>What you do with the copied text, for example pasting it into an AI service, is up to you and subject to that service's
+    privacy policy.</p>
+
+  <h2>What Copystate stores</h2>
+  <p>One setting: whether you last chose <em>Main content</em> or <em>Whole page</em>. It stays in your browser's local storage
+    for the extension and is never sent anywhere.</p>
+
+  <h2>Permissions</h2>
+  <table>
+    <tr><th><code>activeTab</code></th><td>Read the current tab, only after you invoke the extension.</td></tr>
+    <tr><th><code>scripting</code></th><td>Run the reading code in that tab.</td></tr>
+  </table>
+  <p>Copystate does not ask for access to all websites and cannot read any tab in the background.</p>
+
+  <h2>This website</h2>
+  <p>This website is hosted on GitHub Pages. To deliver it, GitHub processes technical data such as your IP address; see the
+    <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub General Privacy Statement</a>.
+    The site sets no cookies and uses no analytics. Issues you open on GitHub are public.</p>
+
+  <h2>Contact</h2>
+  <p>Responsible for Copystate and this website: <a href="https://github.com/mrvnklm">mrvnklm</a> on GitHub. Bug reports and general questions:
+    <a href="https://github.com/mrvnklm/copystate/issues">GitHub issues</a>. Copystate never receives data from you, so
+    nothing about you is stored that could be accessed, corrected or deleted. Changes to this policy are published on this
+    page and in the <a href="https://github.com/mrvnklm/copystate">source repository</a>.</p>
+  </main>
+</div>
+</body>
+</html>

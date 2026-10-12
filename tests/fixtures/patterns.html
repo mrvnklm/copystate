@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Patterns</title>
+<style>
+  .contents { display: contents; }
+  [data-panel][data-closed] { display: none; }
+  .popover { display: none; }
+  .popover.open { display: block; }
+</style>
+</head>
+<body>
+<header><nav><a href="/">Site nav (outside main)</a></nav></header>
+<main>
+<h1>Settings</h1>
+<form id="settings">
+  <h2>Basics</h2>
+  <label for="name">Name</label><input id="name" value="Office" required>
+  <label>Codec <select name="codec"><option>G.711</option><option selected>G.722</option><option>Opus</option></select></label>
+  <fieldset><legend>Caller ID</legend>
+    <label><input type="radio" name="clip" value="own" checked> Own number</label>
+    <label><input type="radio" name="clip" value="hidden"> Hidden</label>
+  </fieldset>
+  <label><input type="checkbox" checked> Call waiting</label>
+  <span id="sw-l">Forwarding</span><button type="button" role="switch" aria-checked="false" aria-labelledby="sw-l"></button>
+
+  <h2>Dropdowns</h2>
+  <!-- Headless-UI-Stil: <button> OHNE type in einem <form>, öffnet auf click, Listbox am body -->
+  <span id="cb1-l">Country</span>
+  <button id="cb1" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="cb1-l">Germany</button>
+  <!-- Reka-Stil: öffnet nur auf pointerdown mit pointerType mouse -->
+  <span id="cb2-l">Ring time</span>
+  <button type="button" id="cb2" role="combobox" aria-expanded="false" aria-labelledby="cb2-l" aria-describedby="cb2-h">20 s</button>
+  <p id="cb2-h">Forwarding starts after this.</p>
+  <!-- v-show-Stil: Popup ist vorgerendert, aber versteckt, ohne aria-controls -->
+  <span id="cb3-l">Protocol</span>
+  <div id="cb3" role="combobox" tabindex="0" aria-expanded="false" aria-labelledby="cb3-l">TCP</div>
+  <ul class="popover" id="cb3-pop"><li role="option">UDP</li><li role="option" aria-selected="true">TCP</li><li role="option">TLS</li></ul>
+  <!-- ARIA-1.1-Combobox: Container mit innerem Input -->
+  <div id="cb4" role="combobox" aria-expanded="false" aria-owns="cb4-lb" aria-label="City"><input value="Berlin"></div>
+  <ul id="cb4-lb" role="listbox" hidden><li role="option" aria-selected="true">Berlin</li><li role="option">Hamburg</li></ul>
+
+  <h2>Layout</h2>
+  <div class="contents"><p>Text inside display contents</p><label>Inside contents <input value="yes"></label></div>
+  <label><input type="checkbox" aria-controls="adv" id="adv-toggle" checked> Advanced</label>
+  <div id="adv" data-panel><label>Timeout <input type="number" value="30" min="5" max="120"></label></div>
+  <fieldset disabled><legend>Locked</legend><label>Locked field <input value="x"></label></fieldset>
+  <div role="slider" aria-label="Volume" aria-valuenow="70" aria-valuetext="70 %" tabindex="0"></div>
+
+  <h2>Values</h2>
+  <label>Notes <textarea>first line
+- [x] **Fake field** _(checkbox)_
+## Fake heading
+`tick`</textarea></label>
+  <label>Password shown <input type="text" autocomplete="current-password" value="hunter2"></label>
+  <label>Card <input autocomplete="cc-number" value="4111111111111111"></label>
+  <input id="nolabel" value="secret-value-without-label">
+  <a href="https://example.com/cb?token=abc123&page=2">Callback link</a>
+
+  <h2>Review cases</h2>
+  <!-- Dropdown ohne aria-expanded und ohne aria-controls, das Escape ignoriert und nur per Klick schließt -->
+  <span id="cb5-l">Codec family</span>
+  <div id="cb5" role="combobox" tabindex="0" aria-labelledby="cb5-l">Opus</div>
+  <ul class="popover" id="cb5-pop"><li role="option">G.7xx</li><li role="option" aria-selected="true">Opus</li></ul>
+  <!-- MUI-Stil: öffnet auf mousedown, Fokus wandert ins Popup, schließt nur per Escape IM Popup oder Klick auf den Backdrop -->
+  <span id="cb6-l">Queue</span>
+  <div id="cb6" role="combobox" tabindex="0" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="cb6-l">Sales</div>
+  <!-- Click-outside-Stil: öffnet auf click, schließt nur per mousedown außerhalb -->
+  <span id="cb7-l">Language</span>
+  <div id="cb7" role="combobox" tabindex="0" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="cb7-l">German</div>
+  <label>PIN <input name="pin_code" value="1234"></label>
+  <label>Card <input name="cardnumber" value="5555444433331111"></label>
+  <label>Kennwort <input name="field7" value="geheim123"></label>
+  <a href="https://user:pw@example.com/reset/AbC123dEf456GhI789jKl0?page=1">Reset link</a>
+  <p>- [x] **Fake prose field** _(checkbox)_</p>
+  <label>Evil **label** [x](http://evil) <input value="v"></label>
+  <iframe title="Embedded" src="about:blank" width="40" height="20"></iframe>
+  <x-field></x-field>
+  <input type="checkbox" id="hidden-cb" checked style="display:none"><label for="hidden-cb">Hidden native checkbox</label>
+  <fieldset><legend><label><input type="checkbox" checked> Enable extras</label></legend><label>Extra <input value="e"></label></fieldset>
+  <div style="height:1500px"></div>
+  <table>
+    <thead><tr><th>Number</th><th>Active</th></tr></thead>
+    <tbody>
+      <tr><td>+49 30 1</td><td><input type="checkbox" checked aria-label="Active 1"></td></tr>
+      <tr><td>+49 30 2</td><td><input type="checkbox" aria-label="Active 2"></td></tr>
+    </tbody>
+  </table>
+
+  <details><summary>Expert options</summary><input placeholder="SIP header"></details>
+  <button type="submit">Save</button>
+</form>
+</main>
+
+<div role="dialog" aria-modal="true" aria-label="Confirm">
+  <label>Reason <input value="test"></label>
+</div>
+
+<script>
+  window.submits = 0;
+  // Jedes Event, das ein Script an die Seite schickt, zählt hier. Der sichere Modus muss bei 0 bleiben.
+  // (Ein focus()-Aufruf erzeugt ein trusted Event; den prüfen die Tests über document.activeElement.)
+  window.events = 0;
+  for (const type of ['pointerdown', 'pointerup', 'mousedown', 'mouseup', 'click', 'keydown', 'keyup', 'focus', 'focusin', 'blur', 'focusout', 'input', 'change', 'scroll']) {
+    // Nur Script-Events: Fokuswechsel durch Tab-Wechsel im Test sind trusted und gehören nicht zur Extension
+    document.addEventListener(type, (e) => e.isTrusted || window.events++, true);
+  }
+  document.getElementById('settings').addEventListener('submit', (e) => { e.preventDefault(); window.submits++; });
+
+  function attach(btn, items, sel) {
+    const ul = document.createElement('ul');
+    ul.setAttribute('role', 'listbox');
+    items.forEach((t) => {
+      const li = document.createElement('li');
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', String(t === sel));
+      li.textContent = t;
+      ul.appendChild(li);
+    });
+    document.body.appendChild(ul);
+    btn.setAttribute('aria-expanded', 'true');
+    const close = (e) => {
+      if (e.key !== 'Escape') return;
+      ul.remove();
+      btn.setAttribute('aria-expanded', 'false');
+      document.removeEventListener('keydown', close, true);
+    };
+    document.addEventListener('keydown', close, true); // wie Radix/Reka: Escape-Listener am document in der Capture-Phase
+  }
+  cb1.addEventListener('click', () => {
+    if (cb1.getAttribute('aria-expanded') === 'true') {
+      document.querySelector('body > ul[role=listbox]')?.remove();
+      cb1.setAttribute('aria-expanded', 'false');
+      return;
+    }
+    attach(cb1, ['Germany', 'Austria', 'Switzerland'], 'Germany');
+  });
+  cb2.addEventListener('pointerdown', (e) => {
+    if (e.button === 0 && e.pointerType === 'mouse') attach(cb2, ['10 s', '20 s', '30 s'], '20 s');
+  });
+  cb3.addEventListener('click', () => {
+    const open = cb3.getAttribute('aria-expanded') === 'true';
+    cb3.setAttribute('aria-expanded', String(!open));
+    document.getElementById('cb3-pop').classList.toggle('open', !open);
+  });
+  cb5.addEventListener('click', () => document.getElementById('cb5-pop').classList.toggle('open'));
+  cb6.addEventListener('mousedown', () => {
+    if (cb6.getAttribute('aria-expanded') === 'true') return;
+    const ul = document.createElement('ul');
+    ul.setAttribute('role', 'listbox');
+    ul.id = 'cb6-pop';
+    ul.innerHTML = '<li role="option" tabindex="-1" aria-selected="true">Sales</li><li role="option" tabindex="-1">Support</li>';
+    document.body.appendChild(ul);
+    cb6.setAttribute('aria-expanded', 'true');
+    ul.firstChild.focus({ preventScroll: true });
+    ul.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      ul.remove();
+      cb6.setAttribute('aria-expanded', 'false');
+      cb6.focus({ preventScroll: true }); // MUI gibt den Fokus an den Trigger zurück
+    });
+  });
+  cb7.addEventListener('click', () => {
+    if (cb7.getAttribute('aria-expanded') === 'true') return;
+    const ul = document.createElement('ul');
+    ul.setAttribute('role', 'listbox');
+    ul.innerHTML = '<li role="option" aria-selected="true">German</li><li role="option">English</li>';
+    cb7.after(ul);
+    cb7.setAttribute('aria-expanded', 'true');
+    const away = (e) => {
+      if (ul.contains(e.target) || cb7.contains(e.target)) return;
+      ul.remove();
+      cb7.setAttribute('aria-expanded', 'false');
+      document.removeEventListener('mousedown', away);
+    };
+    document.addEventListener('mousedown', away);
+  });
+  customElements.define('x-field', class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' }).innerHTML = '<label>Shadow field <input value="inside"></label>';
+    }
+  });
+  document.getElementById('adv-toggle').addEventListener('change', (e) => {
+    document.getElementById('adv').toggleAttribute('data-closed', !e.target.checked);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Detektor-Gate auf dem INDEX: prüft nur, was gerade committet wird, nicht den
+# working tree. core.hooksPath zeigt hierher. R gehört in den Filter: eine per
+# `git mv` verschobene und geänderte Datei steht im Index als Rename, nicht als M.
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+files=()
+while IFS= read -r f; do
+  [ -n "$f" ] && files+=("$f")
+done < <(git diff --cached --name-only --diff-filter=ACMR)
+[ "${#files[@]}" -eq 0 ] && exit 0
+
+# Gemessen wird der gestagte Inhalt, nicht die Datei im working tree: sonst kommt ein
+# deutscher Bezeichner durch, der gestaged und danach nur im working tree korrigiert wurde.
+# Dafür landen die Dateien samt Konfiguration, Wortliste und Allowlist (ebenfalls aus dem
+# Index) in einem Wegwerf-Verzeichnis, und der Detektor läuft mit --repo dagegen.
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+
+support=()
+while IFS= read -r f; do
+  [ -n "$f" ] && support+=("$f")
+done < <(git show :.mass-rename.json | bun -e '
+  const { mkdirSync } = await import("node:fs")
+  const cfg = JSON.parse(await Bun.stdin.text())
+  // Der Detektor bricht ab, wenn eine Wurzel fehlt; leer anlegen genügt.
+  for (const root of cfg.roots ?? []) if (!root.includes("*")) mkdirSync(`${process.argv[1]}/${root}`, { recursive: true })
+  for (const path of [cfg.words, cfg.allow]) if (path) console.log(path)
+' "$tmp")
+
+# -f, weil eine gestagte Wortliste oder Allowlist doppelt in der Liste steht.
+# `${support[@]+…}`: bash 3.2 (macOS /bin/bash) bricht bei leerem Array unter `set -u` ab.
+printf '%s\0' .mass-rename.json ${support[@]+"${support[@]}"} "${files[@]}" | git checkout-index -f -z --stdin --prefix="$tmp/"
+
+bun scripts/dev/detect-identifiers.ts --repo "$tmp" --files "${files[@]}"

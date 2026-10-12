@@ -1,0 +1,50 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --fg: #1d1d1f;
+  --muted: #5f5f66;
+  --border: #d2d2d7;
+  --control-border: #8e8e93;
+  --field: #f5f5f7;
+  --accent: #0a66d8;
+  --accent-fg: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1c1e;
+    --fg: #f2f2f7;
+    --muted: #a1a1a6;
+    --border: #3a3a3c;
+    --control-border: #7c7c80;
+    --field: #2c2c2e;
+    --accent: #4c9bff;
+    --accent-fg: #0b0b0c;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+header.site { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-bottom: 24px; }
+header.site img { width: 32px; height: 32px; }
+header.site > a { color: inherit; text-decoration: none; font-weight: 600; font-size: 18px; }
+header.site nav { margin-left: auto; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+header.site nav a { color: var(--muted); text-decoration: none; }
+header.site nav a:hover, header.site nav a[aria-current="page"] { color: var(--fg); text-decoration: underline; }
+.shot { display: block; max-width: 100%; height: auto; margin: 24px 0; border: 1px solid var(--border); border-radius: 10px; }
+h1 { font-size: 30px; line-height: 1.2; margin: 0 0 12px; }
+h2 { font-size: 20px; margin: 32px 0 8px; }
+a { color: var(--accent); }
+.lead { font-size: 18px; color: var(--muted); }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
+pre { background: var(--field); padding: 12px; border-radius: 8px; overflow-x: auto; }
+.buttons { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; }
+.button { display: inline-block; padding: 10px 18px; border-radius: 8px; background: var(--accent); color: var(--accent-fg); text-decoration: none; font-weight: 600; }
+.button.secondary { background: var(--field); color: var(--fg); border: 1px solid var(--border); }
+footer { margin-top: 48px; color: var(--muted); font-size: 14px; }

@@ -1,0 +1,42 @@
+{
+  "name": "copystate",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Browser extension: copy the page you see as Markdown for an LLM, with every form field, its value and all dropdown options.",
+  "license": "MIT",
+  "author": "mrvnklm",
+  "homepage": "https://mrvnklm.github.io/copystate/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrvnklm/copystate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mrvnklm/copystate/issues"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "icons": "node scripts/make-icons.mjs",
+    "test": "node scripts/build.mjs && bun run fixtures && playwright test",
+    "lint:firefox": "web-ext lint --source-dir dist/firefox",
+    "sweep": "node tests/sweep.mjs",
+    "identifiers": "bun scripts/dev/detect-identifiers.ts",
+    "package": "node scripts/build.mjs && web-ext build --source-dir dist/firefox --artifacts-dir dist/artifacts --filename copystate-firefox-{version}.zip --overwrite-dest && cd dist/chrome && zip -qr ../artifacts/copystate-chrome-$npm_package_version.zip .",
+    "fixtures": "bun build tests/fixtures/libs/vue-app.js tests/fixtures/libs/react-app.jsx --outdir tests/fixtures/libs/dist --minify --define process.env.NODE_ENV='\"production\"' --define __VUE_OPTIONS_API__=true --define __VUE_PROD_DEVTOOLS__=false --define __VUE_PROD_HYDRATION_MISMATCH_DETAILS__=false",
+    "submit:firefox": "bun run package && sops exec-env config/secrets/amo.enc.env 'web-ext sign --source-dir dist/firefox --artifacts-dir dist/artifacts --channel listed --amo-metadata store/amo-metadata.json --approval-timeout 0'",
+    "store-assets": "node scripts/build.mjs && node scripts/store-assets.mjs"
+  },
+  "devDependencies": {
+    "@headlessui/vue": "1.7.23",
+    "@playwright/test": "1.64.0",
+    "@radix-ui/react-select": "2.3.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-select": "5.10.2",
+    "reka-ui": "2.11.0",
+    "selenium-webdriver": "4.51.0",
+    "typescript": "6.0.3",
+    "vue": "3.5.43",
+    "web-ext": "10.7.0"
+  }
+}

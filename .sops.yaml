@@ -1,0 +1,7 @@
+# SOPS-Regeln: alles unter config/secrets/*.enc.* ist mit age verschlüsselt, Keys bleiben lesbar.
+creation_rules:
+  - path_regex: config/secrets/.*\.enc\.(env|ya?ml|json)$
+    key_groups:
+      - age:
+          - age1fd6p7wq7cjgvmt7lf40csmk2pnrf6hgrg07r5ye4uh29q2fl6vwq8ezfxv   # täglich, beide Macs
+          - age1semnqy82wh64cp3z2kr8v8p24uv4nyxf0ym7l742qjtluv8xmywqgtpn58   # break-glass, liegt auf keiner Maschine

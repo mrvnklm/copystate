@@ -1,0 +1,27 @@
+{
+  "slug": "copystate",
+  "summary": {
+    "en-US": "Copy the page you see as Markdown for your AI: text, tables, links and every form field with its value and options. Runs locally.",
+    "de": "Kopiert die Seite als Markdown für deine KI: Text, Tabellen, Links und jedes Formularfeld mit Wert und Optionen. Läuft lokal."
+  },
+  "description": {
+    "en-US": "Copystate copies the web page you are looking at as clean Markdown, ready to paste into an AI assistant. Unlike article clippers, it captures the live state of the page: what you typed, ticked and selected, plus the options its dropdowns offer. Use it to give an LLM the full context of a form, a settings page or a web app.\n\nWhat it captures\n• Page content: headings, text, notes, tables and links\n• Every form field with its current value: text, checkboxes, radios, switches, selects and ARIA comboboxes\n• The options of native and custom dropdowns (tested with MUI, Ant Design, Element Plus, PrimeVue, Radix, Reka UI, Headless UI and react-select)\n• Scope: main content or the whole page\n\nHow it works\n1. Click the toolbar icon or press Alt+Shift+M (Option+Shift+M on macOS; you can change the shortcut). Copystate reads the page and shows a preview with field, character and rough token counts. Nothing on the page is touched and nothing is copied yet.\n2. Some custom dropdowns only reveal their options while open. If the page has such dropdowns, the \"Open dropdowns\" button opens each one briefly and closes it again. Nothing gets selected or submitted, and this only happens when you click that button.\n3. Click \"Copy\" or press Enter to put the Markdown on your clipboard.\n\nPrivacy\n• Passwords, card numbers, IBANs, one-time codes and tokens in form fields are redacted, as are credentials and tokens in link URLs\n• Runs entirely locally: sends nothing anywhere, no analytics, no account\n• Reads only the tab you invoke it on, never in the background\n• Stores only your scope setting\n\nOpen source (MIT): https://github.com/mrvnklm/copystate\nWorks with any AI assistant or LLM that accepts text.",
+    "de": "Copystate kopiert die Seite, die du gerade siehst, als sauberes Markdown für deinen KI-Assistenten. Anders als Artikel-Clipper erfasst es den Live-Zustand der Seite: was du eingetippt, angehakt und ausgewählt hast, und die Optionen, die seine Dropdowns anbieten. So gibst du einem LLM den vollen Kontext eines Formulars, einer Einstellungsseite oder einer Web-App.\n\nWas es erfasst\n• Seiteninhalt: Überschriften, Text, Hinweise, Tabellen und Links\n• Jedes Formularfeld mit aktuellem Wert: Text, Checkboxen, Radios, Switches, Selects und ARIA-Comboboxen\n• Die Optionen von nativen und Custom Dropdowns (getestet mit MUI, Ant Design, Element Plus, PrimeVue, Radix, Reka UI, Headless UI und react-select)\n• Umfang: Hauptinhalt oder ganze Seite\n\nSo funktioniert es\n1. Klick aufs Icon oder drück Alt+Shift+M (auf dem Mac Option+Shift+M, der Shortcut lässt sich ändern). Copystate liest die Seite und zeigt eine Vorschau mit der Zahl der Felder, Zeichen und ungefähren Tokens. Auf der Seite passiert nichts, kopiert ist noch nichts.\n2. Manche Custom Dropdowns zeigen ihre Optionen nur, solange sie offen sind. Hat die Seite solche Dropdowns, öffnet der Button „Dropdowns öffnen“ jedes kurz und schließt es wieder. Dabei wird nichts ausgewählt oder abgeschickt, und das passiert nur, wenn du den Button klickst.\n3. Klick auf „Kopieren“ oder drück Enter: Das Markdown liegt in der Zwischenablage.\n\nDatenschutz\n• Passwörter, Kartennummern, IBANs, Einmalcodes und Tokens in Formularfeldern werden geschwärzt, ebenso Zugangsdaten und Tokens in Links\n• Läuft komplett lokal: sendet nichts, keine Analytics, kein Konto\n• Liest nur den Tab, auf dem du es startest, nie im Hintergrund\n• Gespeichert wird nur deine Einstellung für den Umfang\n\nOpen Source (MIT): https://github.com/mrvnklm/copystate\nFunktioniert mit jedem KI-Assistenten oder LLM, das Text annimmt."
+  },
+  "categories": {
+    "firefox": [
+      "web-development"
+    ]
+  },
+  "homepage": {
+    "en-US": "https://mrvnklm.github.io/copystate/"
+  },
+  "support_url": {
+    "en-US": "https://github.com/mrvnklm/copystate/issues"
+  },
+  "requires_payment": false,
+  "version": {
+    "license": "MIT",
+    "approval_notes": "No build step: the submitted files are the source (https://github.com/mrvnklm/copystate). No network code (CSP connect-src 'none' on extension pages), no remote code, no host permissions. Test page: https://mrvnklm.github.io/copystate/demo.html. Opening the popup only reads the active tab and dispatches no events. The 'Open dropdowns' button, clicked by the user, opens custom dropdowns briefly to read their options and closes them again; form submission and link navigation are blocked meanwhile. The clipboard is written only when the user clicks 'Copy'."
+  }
+}

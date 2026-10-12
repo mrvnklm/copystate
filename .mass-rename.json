@@ -1,0 +1,7 @@
+{
+  "roots": ["src", "scripts", "tests"],
+  "skipDirs": ["node_modules", ".git", "dist", "build", "coverage", "fixtures", "__snapshots__", "vendor"],
+  "words": "scripts/dev/foreign-words.json",
+  "allow": "scripts/dev/foreign-identifiers.allow.json",
+  "translitUmlaut": true
+}

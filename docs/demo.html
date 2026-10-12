@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Account settings · Copystate demo</title>
+<meta name="description" content="A demo form with the field types Copystate reads. All data is fictional.">
+<meta property="og:title" content="Copystate demo">
+<meta property="og:description" content="A demo form with the field types Copystate reads. All data is fictional.">
+<meta property="og:image" content="https://mrvnklm.github.io/copystate/screenshot.png">
+<meta property="og:url" content="https://mrvnklm.github.io/copystate/demo.html">
+<link rel="icon" href="icon-128.png">
+<link rel="stylesheet" href="style.css">
+<style>
+  form { display: grid; gap: 14px; }
+  label, .label { font-weight: 600; display: block; margin-bottom: 4px; }
+  input[type=text], input[type=email], input[type=password], select, .select {
+    width: 100%; max-width: 420px; padding: 8px 10px; border: 1px solid var(--control-border); border-radius: 8px;
+    background: var(--bg); color: var(--fg); font: inherit; text-align: left;
+  }
+  .select { cursor: pointer; display: flex; justify-content: space-between; }
+  .select::after { content: "▾"; color: var(--muted); }
+  .field { position: relative; }
+  [role=listbox] {
+    position: absolute; z-index: 10; margin: 4px 0 0; padding: 4px; list-style: none; width: 420px; max-width: 100%;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 8px 24px rgb(0 0 0 / 0.15);
+  }
+  [role=option] { padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+  [role=option][aria-selected=true] { background: var(--field); font-weight: 600; }
+  .hint { color: var(--muted); font-size: 14px; margin: 4px 0 0; }
+  fieldset { border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; max-width: 420px; }
+  legend { font-weight: 600; padding: 0 4px; }
+  .switch { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+  .switch button { width: 42px; height: 24px; border-radius: 12px; border: 0; background: var(--control-border); position: relative; cursor: pointer; }
+  .switch button::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: left .15s; }
+  .switch button[aria-checked=true] { background: var(--accent); }
+  .switch button[aria-checked=true]::after { left: 21px; }
+  .save { justify-self: start; padding: 10px 18px; border-radius: 8px; border: 0; background: var(--accent); color: var(--accent-fg); font: inherit; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <img src="icon-128.png" alt="">
+    <a href="./">Copystate</a>
+    <nav aria-label="Site"><a href="demo.html" aria-current="page">Demo</a><a href="privacy.html">Privacy</a><a href="https://github.com/mrvnklm/copystate">GitHub</a></nav>
+  </header>
+
+  <main>
+    <h1>Account settings</h1>
+    <p class="lead">A demo form with the field types Copystate reads. All data is fictional.</p>
+
+    <form onsubmit="event.preventDefault()">
+      <h2>Profile</h2>
+      <div><label for="name">Full name</label><input id="name" type="text" value="Alex Example" required></div>
+      <div><label for="email">Email</label><input id="email" type="email" value="alex@example.com"></div>
+      <div>
+        <label for="country">Country</label>
+        <select id="country"><option>Austria</option><option selected>Germany</option><option>Switzerland</option></select>
+      </div>
+
+      <h2>Plan</h2>
+      <div class="field">
+        <span class="label" id="plan-label">Plan</span>
+        <button type="button" class="select" id="plan" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="plan-label plan" aria-describedby="plan-hint">Team</button>
+        <p class="hint" id="plan-hint">Team includes up to 10 seats.</p>
+      </div>
+      <fieldset>
+        <legend>Billing period</legend>
+        <label><input type="radio" name="period" checked> Yearly (2 months free)</label>
+        <label><input type="radio" name="period"> Monthly</label>
+      </fieldset>
+      <div class="switch"><span id="invoice-label">Email invoices</span><button type="button" role="switch" aria-checked="true" aria-labelledby="invoice-label"></button></div>
+      <label><input type="checkbox"> Send me product news</label>
+
+      <h2>Payment</h2>
+      <div><label for="iban">IBAN</label><input id="iban" type="text" autocomplete="off" value="DE89 3704 0044 0532 0130 00"></div>
+      <div><label for="pw">Confirm with password</label><input id="pw" type="password" value="correct horse battery staple"></div>
+
+      <h2>Devices</h2>
+      <table>
+        <thead><tr><th>Device</th><th>Last seen</th><th>Trusted</th></tr></thead>
+        <tbody>
+          <tr><td>MacBook</td><td>Today</td><td><input type="checkbox" checked aria-label="Trusted MacBook"></td></tr>
+          <tr><td>Phone</td><td>3 days ago</td><td><input type="checkbox" aria-label="Trusted phone"></td></tr>
+        </tbody>
+      </table>
+
+      <button class="save" type="submit">Save changes</button>
+    </form>
+  </main>
+</div>
+<script>
+  // Custom dropdown as in many UI libraries: options exist in the DOM only while open
+  const plan = document.getElementById('plan');
+  const PLANS = ['Free', 'Team', 'Business'];
+  let list = null;
+  const close = () => {
+    list?.remove();
+    list = null;
+    plan.setAttribute('aria-expanded', 'false');
+  };
+  plan.addEventListener('click', () => {
+    if (list) return close();
+    list = document.createElement('ul');
+    list.setAttribute('role', 'listbox');
+    for (const name of PLANS) {
+      const item = document.createElement('li');
+      item.setAttribute('role', 'option');
+      item.setAttribute('aria-selected', String(name === plan.textContent));
+      item.textContent = name;
+      item.addEventListener('click', () => {
+        plan.textContent = name;
+        close();
+      });
+      list.append(item);
+    }
+    plan.after(list);
+    plan.setAttribute('aria-expanded', 'true');
+  });
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && close());
+  document.querySelector('[role=switch]').addEventListener('click', (e) => {
+    e.currentTarget.setAttribute('aria-checked', String(e.currentTarget.getAttribute('aria-checked') !== 'true'));
+  });
+</script>
+</body>
+</html>

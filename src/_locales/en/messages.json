@@ -1,0 +1,97 @@
+{
+  "extName": {
+    "message": "Copystate – Page & Form State to Markdown"
+  },
+  "shortName": {
+    "message": "Copystate"
+  },
+  "extDescription": {
+    "message": "Copy the page you see as Markdown for your AI: text, tables, links and every form field with its value and options. Runs locally."
+  },
+  "actionTitle": {
+    "message": "Copy page as Markdown"
+  },
+  "scopeLabel": {
+    "message": "Scope"
+  },
+  "scopeMain": {
+    "message": "Main content"
+  },
+  "scopePage": {
+    "message": "Whole page"
+  },
+  "previewLabel": {
+    "message": "Markdown preview"
+  },
+  "probeButton": {
+    "message": "Open dropdowns ($COUNT$)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "probeHint": {
+    "message": "Their options are only readable while open. Opens each one briefly on the page and closes it again. Nothing gets selected."
+  },
+  "copyButton": {
+    "message": "Copy"
+  },
+  "statusReading": {
+    "message": "Reading the page…"
+  },
+  "statusOpening": {
+    "message": "Opening dropdowns…"
+  },
+  "statusReady": {
+    "message": "$FIELDS$ fields · $CHARS$ characters · ≈$TOKENS$ tokens",
+    "placeholders": {
+      "fields": {
+        "content": "$1"
+      },
+      "chars": {
+        "content": "$2"
+      },
+      "tokens": {
+        "content": "$3"
+      }
+    }
+  },
+  "statusCopied": {
+    "message": "Copied: $FIELDS$ fields · ≈$TOKENS$ tokens",
+    "placeholders": {
+      "fields": {
+        "content": "$1"
+      },
+      "chars": {
+        "content": "$2"
+      },
+      "tokens": {
+        "content": "$3"
+      }
+    }
+  },
+  "statusNotCopied": {
+    "message": "Copying failed. The text is selected, copy it with your keyboard."
+  },
+  "errorRestricted": {
+    "message": "This page can't be read by extensions (browser or store pages)."
+  },
+  "errorFailed": {
+    "message": "Reading failed: $DETAIL$",
+    "placeholders": {
+      "detail": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusBusy": {
+    "message": "Waiting for an earlier run on this page to finish…"
+  },
+  "errorNoTab": {
+    "message": "No tab to read."
+  },
+  "errorBusy": {
+    "message": "Copystate is still finishing an earlier run on this page. Try again in a moment."
+  }
+}

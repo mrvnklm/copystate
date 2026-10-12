@@ -1,0 +1,69 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Telefonie-Portal</title><style>.hidden{display:none}</style></head><body>
+<main><h1>Konfiguration</h1>
+<form data-test="primary-number-settings"><h3>Hauptrufnummer</h3><p>Die Hauptrufnummer wird standardmäßig ausgehend signalisiert.</p>
+<div class="eb-select"><div class="eb-select__heading"><label id="label-v-0" for="combobox-v-0"><p>Hauptrufnummer auswählen</p></label></div>
+<div class="wrap"><div id="combobox-v-0" role="combobox" tabindex="0" aria-expanded="false" aria-owns="listbox-v-0" aria-haspopup="listbox" aria-labelledby="label-v-0" aria-describedby="v-0-caption"><span title="+493023125000">+493023125000</span></div><!----><div aria-hidden="true"><svg></svg></div></div>
+<p id="v-0-caption">Wählen Sie aus der Liste der zugewiesenen Rufnummern eine Hauptrufnummer aus.</p></div>
+<button type="submit" disabled>Speichern</button></form>
+
+<form data-test="cli-settings"><h3>Rufnummernanzeige (CLIP)</h3><p>Hier legen Sie fest, welche Anrufer-ID angezeigt wird.</p>
+<div><label><input type="radio" value="makePbxDecideCallerId" checked><span>PBX bestimmt Anrufer-ID (CLIP No Screening)</span></label>
+<p>Die PBX ermittelt, welche Anrufer-ID angezeigt wird.</p>
+<div class="select-wrapper"><div><span>Wählen Sie das SIP-Feld mit CLIP</span><div><svg aria-hidden="true"></svg></div></div>
+<div class="eb-select"><div class="eb-select__heading hidden"></div><div class="wrap"><div id="combobox-v-1" role="combobox" tabindex="0" aria-expanded="false" aria-owns="listbox-v-1" aria-haspopup="listbox"><span title="Asserted-Identity">Asserted-Identity</span></div><!----><div aria-hidden="true"><svg></svg></div></div></div>
+<p>Bitte geben Sie das Feld des SIP-Headers an, in dem Ihre Telefonanlage die Anrufer-ID überträgt</p></div></div>
+<div><label><input type="radio" value="specificCallerId"><span>Anzeige einer bestimmten Rufnummer</span></label><p>Wählen Sie eine bestimmte Rufnummer aus.</p><!----></div>
+<div data-test="hide-caller-id"><label><input type="radio" value="hideCallerId"><span>Rufnummer unterdrücken</span></label><p>Der Angerufene erhält Ihre Anrufer-ID als nicht identifizierte Telefonnummer.</p></div>
+<section class="alert"><h3><p>Rechtlicher Hinweis!</p></h3><div class="markdown"><p>Sie dürfen ausschließlich solche Rufnummern übermitteln, an denen Sie ein Nutzungsrecht haben.</p></div></section>
+<div><input id="checkbox" type="checkbox" value="false"><label for="checkbox"><h5>Ich habe die rechtliche Mitteilung gelesen und akzeptiert.</h5></label></div>
+<button type="submit" disabled>Speichern</button></form>
+
+<form><h3>Rufweiterleitung &amp; Parallelruf</h3>
+<section class="alert"><h3>Für Rufweiterleitungen an externe Rufnummern entstehen Kosten.</h3><button type="button"><button type="button"><a href="https://example.com/pricing" target="_blank">Erfahren Sie mehr</a></button></button></section>
+<div><label><input name="call-forwarding-options" checked type="radio" value="dontForwardAnyCalls"><span>Anrufe nicht weiterleiten</span></label><p>Anrufer erhalten eine Fehleransage.</p></div>
+<div><label><input name="call-forwarding-options" type="radio" value="forwardAllCallsImmediately"><span>Alle Anrufe sofort und ohne Bedingungen weiterleiten</span></label></div>
+<div class="toggle-panel"><div><h4>Parallelruf</h4><p>Ihre Anrufe werden parallel an bis zu drei anderen externen Geräten signalisiert.</p></div>
+<div class="eb-toggle-switch"><label><input type="checkbox" role="switch" aria-disabled="false"><span></span><svg aria-hidden="true"></svg></label></div></div>
+<button type="submit" disabled>Speichern</button></form>
+
+<form class="voicemail-announcements"><h3>Anrufbeantworter</h3><p>Übersicht der Ansagen</p><button type="button"><svg aria-hidden="true"></svg>Ansage hinzufügen</button>
+<table><thead><th>NAME</th><th>ANRUFER AUFZEICHNEN</th><th>MELDUNG PER</th><th></th></thead><tbody>
+<tr><td><div>Standard-Ansage “Nachricht hinterlassen”</div></td><td><div>EIN</div></td><td><div>E-MAIL</div></td><td><button type="button"><svg aria-hidden="true"></svg></button></td></tr>
+<tr><td><div>Standard-Ansage “Nicht erreichbar”</div></td><td><div>AUS</div></td><td><div>E-MAIL</div></td><td><button type="button"><svg aria-hidden="true"></svg></button></td></tr></tbody></table>
+<div class="eb-input"><label>E-Mail-Adresse für Benachrichtigungen:</label><div><input placeholder="ich@example.com" type="text" aria-label="E-Mail-Adresse für Benachrichtigungen und aufgezeichnete Nachrichten:" value="test@example.com"></div></div>
+<div class="eb-input"><label>Rufnummer für SMS-Benachrichtigungen:</label><div><input placeholder="z.B. 00491234567890" type="text" minlength="5" aria-label="Rufnummer für SMS-Benachrichtigungen:"></div></div>
+<button type="submit" disabled>Speichern</button></form>
+
+<form data-test="blocklist-settings"><h3>Sperrliste/Freigabeliste</h3>
+<nav><ul role="tablist"><li role="presentation"><span role="tab" aria-selected="true" tabindex="0">Eingehende Anrufe</span></li><li role="presentation"><span role="tab" aria-selected="false" tabindex="0">Ausgehende Anrufe</span></li></ul></nav>
+<div class="block-anonymous-calls"><span>Anonyme Anrufe</span><div class="eb-toggle-switch"><span>Blockieren</span><label><input type="checkbox" role="switch" checked aria-disabled="false"><span></span></label><span>Erlauben</span></div></div>
+<div><div data-test="deny-calls-option"><input checked type="radio" value="deny"><label title="Sperrmodus"><span>Sperrmodus</span></label></div>
+<div data-test="allow-calls-option"><input type="radio" value="allow"><label title="Freigabemodus"><span>Freigabemodus</span></label></div></div>
+<div class="number-permit-list"><div><span>Rufnummer oder Vorwahl hinzufügen</span><div><div class="eb-input"><div><input placeholder="z.B. 0049123456789 oder +49..." type="tel" maxlength="100" value=""></div></div><button type="button" disabled><svg aria-hidden="true"></svg></button></div></div>
+<div><span>Bisher wurden keine Nummern hinzugefügt.</span></div></div>
+<button type="button">Auf Standardeinstellungen zurücksetzen</button><button type="submit" disabled>Speichern</button></form>
+
+<form><h3>Trusted IPs</h3>
+<div><label><input name="trusted-ip-selection-options" type="radio" value="password"><span>SIP-Passwort</span></label></div>
+<div><label><input type="radio" value="ip" checked><span>IP-Adresse</span></label><p>Gespräche werden direkt an die hinterlegte IP-Adresse weitergeleitet.</p>
+<div class="number-permit-list"><div><span>IP-Adresse hinzufügen</span><div><input placeholder="Z.B. 198.51.100.0" type="tel" maxlength="100" value=""><button type="button" disabled><svg aria-hidden="true"></svg></button></div></div>
+<div><div><span>192.0.2.10</span><button type="button"><svg aria-hidden="true"></svg></button></div></div></div>
+<div class="eb-select"><div class="eb-select__heading"><label id="label-v-2" for="combobox-v-2"><p>Transportprotokoll</p></label></div>
+<div class="wrap"><div id="combobox-v-2" role="combobox" tabindex="0" aria-expanded="false" aria-owns="listbox-v-2" aria-haspopup="listbox" aria-labelledby="label-v-2" aria-describedby="v-2-caption"><span title="TCP">TCP</span></div><!----></div>
+<p id="v-2-caption">Wählen Sie das Protokoll aus, das zur Herstellung der SIP-Verbindung verwendet wird.</p></div>
+<div><div class="eb-toggle-switch"><label><input type="checkbox" role="switch" aria-disabled="false"><span></span></label></div><div><p>Secure Real-Time Transport Protocol (SRTP)</p><p>Verschlüsselt den Audiostream Ihrer Anrufe.</p></div></div></div>
+<button type="submit" disabled>Speichern</button></form>
+</main>
+<script>
+// Simuliert das Vue-Dropdown: öffnet per click, rendert die Listbox neben dem Combobox, schließt per Escape
+const OPTIONS = { 'combobox-v-0': ['+493023125000', '+493023125001'], 'combobox-v-1': ['Asserted-Identity', 'From', 'Diversion'], 'combobox-v-2': ['UDP', 'TCP', 'TLS'] };
+document.querySelectorAll('[role=combobox]').forEach((cb) => cb.addEventListener('click', () => {
+  if (cb.getAttribute('aria-expanded') === 'true') return close(cb);
+  const ul = document.createElement('ul'); ul.setAttribute('role', 'listbox'); ul.id = cb.getAttribute('aria-owns');
+  const cur = cb.textContent.trim();
+  OPTIONS[cb.id].forEach((t) => { const li = document.createElement('li'); li.setAttribute('role', 'option'); li.setAttribute('aria-selected', t === cur); li.textContent = t; ul.appendChild(li); });
+  cb.after(ul); cb.setAttribute('aria-expanded', 'true');
+}));
+function close(cb) { document.getElementById(cb.getAttribute('aria-owns'))?.remove(); cb.setAttribute('aria-expanded', 'false'); }
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('[role=combobox][aria-expanded=true]').forEach(close); });
+</script></body></html>

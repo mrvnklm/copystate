@@ -1,0 +1,97 @@
+{
+  "extName": {
+    "message": "Copystate – Seite & Formulare als Markdown"
+  },
+  "shortName": {
+    "message": "Copystate"
+  },
+  "extDescription": {
+    "message": "Kopiert die Seite als Markdown für deine KI: Text, Tabellen, Links und jedes Formularfeld mit Wert und Optionen. Läuft lokal."
+  },
+  "actionTitle": {
+    "message": "Seite als Markdown kopieren"
+  },
+  "scopeLabel": {
+    "message": "Umfang"
+  },
+  "scopeMain": {
+    "message": "Hauptinhalt"
+  },
+  "scopePage": {
+    "message": "Ganze Seite"
+  },
+  "previewLabel": {
+    "message": "Markdown-Vorschau"
+  },
+  "probeButton": {
+    "message": "Dropdowns öffnen ($COUNT$)",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "probeHint": {
+    "message": "Ihre Optionen sind nur lesbar, solange sie offen sind. Öffnet jedes kurz auf der Seite und schließt es wieder. Ausgewählt wird nichts."
+  },
+  "copyButton": {
+    "message": "Kopieren"
+  },
+  "statusReading": {
+    "message": "Lese die Seite…"
+  },
+  "statusOpening": {
+    "message": "Öffne Dropdowns…"
+  },
+  "statusReady": {
+    "message": "$FIELDS$ Felder · $CHARS$ Zeichen · ≈$TOKENS$ Tokens",
+    "placeholders": {
+      "fields": {
+        "content": "$1"
+      },
+      "chars": {
+        "content": "$2"
+      },
+      "tokens": {
+        "content": "$3"
+      }
+    }
+  },
+  "statusCopied": {
+    "message": "Kopiert: $FIELDS$ Felder · ≈$TOKENS$ Tokens",
+    "placeholders": {
+      "fields": {
+        "content": "$1"
+      },
+      "chars": {
+        "content": "$2"
+      },
+      "tokens": {
+        "content": "$3"
+      }
+    }
+  },
+  "statusNotCopied": {
+    "message": "Kopieren fehlgeschlagen. Der Text ist markiert, kopier ihn mit der Tastatur."
+  },
+  "errorRestricted": {
+    "message": "Diese Seite dürfen Extensions nicht lesen (Browser- oder Store-Seiten)."
+  },
+  "errorFailed": {
+    "message": "Lesen fehlgeschlagen: $DETAIL$",
+    "placeholders": {
+      "detail": {
+        "content": "$1"
+      }
+    }
+  },
+  "statusBusy": {
+    "message": "Warte, bis ein früherer Lauf auf dieser Seite fertig ist…"
+  },
+  "errorNoTab": {
+    "message": "Kein Tab zum Lesen gefunden."
+  },
+  "errorBusy": {
+    "message": "Copystate ist auf dieser Seite noch mit einem früheren Lauf beschäftigt. Versuch es gleich noch einmal."
+  }
+}
